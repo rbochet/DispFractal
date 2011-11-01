@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MandelbrotActivity extends Activity {
-	private String path = "/data/data/fr.stackr.android.dispmandel/cache/out.bmp";
+	private String path;
 
 	static {
 		System.loadLibrary("random_image");
@@ -31,6 +31,7 @@ public class MandelbrotActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		path = getCacheDir() + "/out.bmp";
 		new File(path).delete();
 
 		imageClick(null);

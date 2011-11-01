@@ -8,6 +8,10 @@
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
     android:text="@string/hello"
+    android:id="@+id/message"
     />
-<ImageView android:src="@drawable/loading" android:id="@+id/fractal" android:layout_width="fill_parent" android:layout_height="fill_parent"></ImageView>
+<ImageView 
+	android:clickable="true"  	
+ 	android:onClick="imageClick" 
+	android:src="@drawable/loading" android:id="@+id/fractal" android:layout_width="fill_parent" android:layout_height="fill_parent"></ImageView>
 </LinearLayout>

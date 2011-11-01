@@ -21,10 +21,11 @@ public class MandelbrotActivity extends Activity {
 		System.loadLibrary("random_image");
 	}
 
-	private byte []randomBytes = new byte[32];
-	
-	private native int generateImage(byte []thirtytwobytes);
-	private native int nativeRandomBytes(byte []randombytes);
+	private byte[] randomBytes = new byte[32];
+
+	private native int generateImage(byte[] thirtytwobytes);
+
+	private native int nativeRandomBytes(byte[] randombytes);
 
 	/** Called when the activity is first created. */
 	@Override
@@ -33,24 +34,25 @@ public class MandelbrotActivity extends Activity {
 		setContentView(R.layout.main);
 		Log.v("RB", getCacheDir().getAbsolutePath());
 		new File(path).delete();
-		
+
 		imageClick(null);
 	}
-	
+
 	public void imageClick(View view) {
 		nativeRandomBytes(randomBytes);
 		TextView t = (TextView) findViewById(R.id.message);
 		String s = "";
-		for(int i=0;i<32;i++) {
-			int b=randomBytes[i]&0xff;
-			s=s+Integer.toHexString(b);
+		for (int i = 0; i < 32; i++) {
+			int b = randomBytes[i] & 0xff;
+			s = s + Integer.toHexString(b);
 		}
-		int returnValue=generateImage(randomBytes);
-		if (returnValue!=-1) s="generateImage("+s+") failed (returned "+returnValue+")."; 
+		int returnValue = generateImage(randomBytes);
+		if (returnValue != -1)
+			s = "generateImage(" + s + ") failed (returned " + returnValue
+					+ ").";
 		t.setText(s);
 		disp();
 	}
-
 
 	private void disp() {
 		ImageView image = (ImageView) findViewById(R.id.fractal);
